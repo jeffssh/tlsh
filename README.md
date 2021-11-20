@@ -2,7 +2,7 @@
 Certificate pinning reverse shell. The certificate is embedded in both `tlsh` and `tlshl`, and the key is embedded in `tlshl`. Every build will generate a new key pair, along with new binaries that have the certificate/key embedded in them. One binary will not work with a binary from another build.
 
 ## Build
-By default, tlsh will build for the current architecture. There are 5 build time variables that can be overridden during a call to make. To build for a different architecture, specify the relevant GOOS and GOARCH values. By default, tlsh will reach out to 127.0.0.1:1337. 
+By default, tlsh will build for the current architecture. There are 5 build time variables that can be overridden during a call to make. To build for a different architecture, specify the relevant `GOOS` and `GOARCH` values. By default, tlsh will reach out to 127.0.0.1:1337. 
 
 **Build variables:**
 ```

@@ -15,6 +15,7 @@ build:
 	CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) go build -o . -ldflags "-X main.lAddr=$(IP):$(PORT) -X main.binPath=$(BINPATH)" ./...
 
 key-cert-pair:
+	mkdir cert 2>/dev/null
 	bash -c "openssl req -x509 -new -newkey rsa:2048 -nodes -keyout cert/server.key -out cert/server.csr -subj \"/O=tlsh/\" -extensions SAN -reqexts SAN -config <(cat /etc/ssl/openssl.cnf <(printf \"\n[ SAN ]\nsubjectAltName=IP:$(IP)\n\"))"
 	cp cert/server.csr cmd/tlsh/server.csr
 	cp cert/server.csr cmd/tlshl/server.csr
@@ -23,8 +24,7 @@ key-cert-pair:
 clean:
 	rm -f tlsh*
 
-	rm -f cert/server.csr 
-	rm -f cert/server.key 
+	rm -rf cert
 
 	rm -f cmd/tlsh/server.csr
 	rm -f cmd/tlshl/server.csr
