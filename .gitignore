@@ -15,6 +15,6 @@
 # vendor/
 
 
-tlsh*
+tlsh
+tlshl
 cert/*
-cmd/tlsh/server.csr
