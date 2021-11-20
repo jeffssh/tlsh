@@ -12,7 +12,7 @@ import (
 )
 
 var lAddr string = "127.0.0.1:1337"
-var binPath string = "/bin/sh"
+var binPath string = "/bin/bash"
 
 //go:embed server.csr
 var cert []byte

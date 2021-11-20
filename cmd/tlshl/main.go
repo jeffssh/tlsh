@@ -3,9 +3,9 @@ package main
 import (
 	// "fmt"
 	// "io"
+	_ "embed"
 
 	"crypto/tls"
-	"fmt"
 	"io"
 	"log"
 	"net"
@@ -13,8 +13,12 @@ import (
 )
 
 var lAddr string = "127.0.0.1:1337"
-var serverKeyFile string = "cert/server.key"
-var serverCertFile string = "cert/server.csr"
+
+//go:embed server.key
+var serverKey []byte
+
+//go:embed server.csr
+var serverCert []byte
 
 func errCheck(err error) {
 	if err != nil {
@@ -23,12 +27,11 @@ func errCheck(err error) {
 }
 
 func main() {
-	cert, err := tls.LoadX509KeyPair(serverCertFile, serverKeyFile)
+	cert, err := tls.X509KeyPair(serverCert, serverKey)
 	errCheck(err)
 	config := &tls.Config{
 		Certificates: []tls.Certificate{cert},
 	}
-	fmt.Println(lAddr)
 	l, err := tls.Listen("tcp", lAddr, config)
 	errCheck(err)
 	defer l.Close()

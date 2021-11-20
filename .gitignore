@@ -17,4 +17,10 @@
 
 tlsh
 tlshl
-cert/*
+
+cert/server.csr
+cert/server.key
+
+cmd/tlsh/server.csr
+cmd/tlshl/server.csr
+cmd/tlshl/server.key
