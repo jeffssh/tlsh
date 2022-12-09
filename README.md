@@ -9,8 +9,10 @@ By default, tlsh will build for the current architecture. There are 5 build time
 IP=127.0.0.1
 PORT=1337
 BINPATH=/bin/bash
-GOOS=
-GOARCH=
+TLSH_GOOS=
+TLSH_GOARCH=
+TLSHL_GOOS=
+TLSHL_GOARCH=
 ```
 
 Example usage: `make TLSH_GOOS=linux TLSH_GOARCH=amd64 TLSHL_GOOS=linux TLSHL_GOARCH=arm`
