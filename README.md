@@ -13,6 +13,9 @@ GOOS=
 GOARCH=
 ```
 
+Example usage: `make TLSH_GOOS=linux TLSH_GOARCH=amd64 TLSHL_GOOS=linux TLSHL_GOARCH=arm`
+
+
 **Supported GOOS and GOARCH:**
 | GOOS      | GOARCH   |
 | --------- | -------- |

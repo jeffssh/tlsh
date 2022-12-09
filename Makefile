@@ -1,8 +1,10 @@
 IP=127.0.0.1
 PORT=1337
 BINPATH=/bin/bash
-GOOS=
-GOARCH=
+TLSH_GOOS=
+TLSH_GOARCH=
+TLSHL_GOOS=
+TLSHL_GOARCH=
 
 
 all:
@@ -12,7 +14,8 @@ all:
 
 build:
 	go get ./...
-	CGO_ENABLED=0 GOOS=$(GOOS) GOARCH=$(GOARCH) go build -o . -ldflags "-X main.lAddr=$(IP):$(PORT) -X main.binPath=$(BINPATH)" ./...
+	CGO_ENABLED=0 GOOS=$(TLSH_GOOS) GOARCH=$(TLSH_GOARCH) go build -o tlsh -ldflags "-X main.lAddr=$(IP):$(PORT) -X main.binPath=$(BINPATH)" ./cmd/tlsh/main.go
+	CGO_ENABLED=0 GOOS=$(TLSHL_GOOS) GOARCH=$(TLSHL_GOARCH) go build -o tlshl -ldflags "-X main.lAddr=$(IP):$(PORT) -X main.binPath=$(BINPATH)" ./cmd/tlshl/main.go
 
 key-cert-pair:
 	mkdir cert 2>/dev/null
@@ -23,7 +26,6 @@ key-cert-pair:
 
 clean:
 	rm -f tlsh*
-
 	rm -rf cert
 
 	rm -f cmd/tlsh/server.csr
